@@ -3,9 +3,19 @@
 #include <cctype>
 #include <vector>
 #include <algorithm>
+#include <dirent.h>
+#include <sys/stat.h>
+
 
 using namespace std;
 
+// Color codes to display dir, files and exec.
+#define BERANG "\e[m" 
+#define HARA_RANG "\e[32m" 
+#define NELA_RANG "\e[36m"
+
+
+// Function to split the command
 vector <string> split(const string &text, char sep) {
 	vector<string> tokens;
 	size_t start = 0, end = 0;
@@ -18,7 +28,7 @@ vector <string> split(const string &text, char sep) {
 	return tokens;
 }
 
-
+// Core logic of ls command
 int ls() {
 	// Logic to be added here
 	return 0;
