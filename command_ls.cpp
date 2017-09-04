@@ -14,20 +14,6 @@ using namespace std;
 #define HARA_RANG "\e[32m" 
 #define NELA_RANG "\e[36m"
 
-
-// Function to split the command
-vector <string> split(const string &text, char sep) {
-	vector<string> tokens;
-	size_t start = 0, end = 0;
-	while ((end = text.find(sep, start)) != string::npos) {
-		tokens.push_back(text.substr(start, end - start));
-		start = end + 1;
-	}
-	tokens.push_back(text.substr(start));
-	tokens.erase(remove(tokens.begin(), tokens.end(), ""), tokens.end());
-	return tokens;
-}
-
 // Core logic of ls command
 int ls() {
 	// Logic to be added here
