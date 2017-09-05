@@ -11,6 +11,7 @@ using namespace std;
 // Include your header file below here
 #include "split_command_and_flags.h"
 #include "pwd.h"
+#include "make_dir.h"
 
 int main() {
 	// Make I/O faster
@@ -38,7 +39,7 @@ int main() {
 	}
 
 	// Add tests here.
-
+	make_dir();
 
 	return 0;
 }
