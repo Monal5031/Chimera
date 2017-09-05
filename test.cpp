@@ -12,6 +12,8 @@ using namespace std;
 #include "split_command_and_flags.h"
 #include "pwd.h"
 #include "exit_command.h"
+#include "make_dir.h"
+
 int main() {
 	// Make I/O faster
 	ios::sync_with_stdio(false);
@@ -37,10 +39,8 @@ int main() {
 		return a;
 	}
 
-	// Add tests here.
-	//test for exit 
-	exit_command();
-
-
+	// Add tests here. 
+	make_dir();
+  exit_command();
 	return 0;
 }
