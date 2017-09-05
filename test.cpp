@@ -38,6 +38,8 @@ int main() {
 	}
 
 	// Add tests here.
+	//test for exit 
+	exit_command();
 
 
 	return 0;
