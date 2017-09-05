@@ -11,6 +11,7 @@ using namespace std;
 // Include your header file below here
 #include "split_command_and_flags.h"
 #include "pwd.h"
+#include "exit_command.h"
 #include "make_dir.h"
 
 int main() {
@@ -38,8 +39,8 @@ int main() {
 		return a;
 	}
 
-	// Add tests here.
+	// Add tests here. 
 	make_dir();
-
+  exit_command();
 	return 0;
 }
