@@ -83,23 +83,23 @@ int ls(bool pass) {
 			struct stat fileStat;
 			stat(dptr->d_name,&fileStat);   
 
-			cout << dptr->d_name;
+			cout << dptr->d_name << endl;
 			cout << "—————————" << endl << endl;
 			cout << "File size: \t\t" << fileStat.st_size << "bytes" << endl;
 			cout << "Number of Links: \t" << fileStat.st_nlink << endl;
 			cout << "File inode: \t\t" << fileStat.st_ino << endl;
 
 			cout << "File Permissions: \t";
-			cout << (S_ISDIR(fileStat.st_mode)) ? "d" : "-";
-			cout << (fileStat.st_mode & S_IRUSR) ? "r" : "-";
-			cout << (fileStat.st_mode & S_IWUSR) ? "w" : "-";
-			cout << (fileStat.st_mode & S_IXUSR) ? "x" : "-";
-			cout << (fileStat.st_mode & S_IRGRP) ? "r" : "-";
-			cout << (fileStat.st_mode & S_IWGRP) ? "w" : "-";
-			cout << (fileStat.st_mode & S_IXGRP) ? "x" : "-";
-			cout << (fileStat.st_mode & S_IROTH) ? "r" : "-";
-			cout << (fileStat.st_mode & S_IWOTH) ? "w" : "-";
-			cout << (fileStat.st_mode & S_IXOTH) ? "x" : "-";
+			cout << ((S_ISDIR(fileStat.st_mode)) ? "d" : "-");
+			cout << ((fileStat.st_mode & S_IRUSR) ? "r" : "-");
+			cout << ((fileStat.st_mode & S_IWUSR) ? "w" : "-");
+			cout << ((fileStat.st_mode & S_IXUSR) ? "x" : "-");
+			cout << ((fileStat.st_mode & S_IRGRP) ? "r" : "-");
+			cout << ((fileStat.st_mode & S_IWGRP) ? "w" : "-");
+			cout << ((fileStat.st_mode & S_IXGRP) ? "x" : "-");
+			cout << ((fileStat.st_mode & S_IROTH) ? "r" : "-");
+			cout << ((fileStat.st_mode & S_IWOTH) ? "w" : "-");
+			cout << ((fileStat.st_mode & S_IXOTH) ? "x" : "-");
 			cout << endl << endl;
 			cout << "The file " << ((S_ISLNK(fileStat.st_mode)) ? "is" : "is not") << " a symbolic link" << endl;
 		}
