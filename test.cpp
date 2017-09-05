@@ -5,6 +5,10 @@
 #include <vector>
 #include <algorithm>
 #include <unistd.h>
+#include <sys/file.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -13,6 +17,7 @@ using namespace std;
 #include "pwd.h"
 #include "exit_command.h"
 #include "make_dir.h"
+#include "cd.h"
 
 int main() {
 	// Make I/O faster
@@ -34,13 +39,11 @@ int main() {
 
 	// Testing pwd command
 
-	int a = pwd();
-	if (!a) {
-		return a;
-	}
-
+	pwd();
 	// Add tests here. 
 	make_dir();
-  exit_command();
+	cd();
+	pwd();
+	//exit_command();
 	return 0;
 }
