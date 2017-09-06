@@ -18,6 +18,7 @@ using namespace std;
 #include "exit_command.h"
 #include "make_dir.h"
 #include "cd.h"
+#include "removedir.h"
 
 int main() {
 	// Make I/O faster
@@ -45,5 +46,9 @@ int main() {
 	cd();
 	pwd();
 	//exit_command();
+	// Testing rmdir()
+	string t="rmdir dir";
+	vector<string> com = split(t, ' ');
+	remdir(com.back());
 	return 0;
 }
