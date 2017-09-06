@@ -10,6 +10,7 @@ int ls(bool pass) {
 	struct dirent *dptr = NULL; 
 	unsigned int count = 0; 
 	struct winsize w;
+	vector < pair < string, string> > files_name;
 	
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); 
 
@@ -45,19 +46,31 @@ int ls(bool pass) {
 					// permissions on it. 
 					if(S_ISDIR(st.st_mode)) {
 						// If it was a directory, print it in Blue
-						cout << NILA_RANG << dptr->d_name << "\t" << BERANG;
+						files_name.push_back(make_pair(dptr->d_name, NILA_RANG));
+						// cout << NILA_RANG << dptr->d_name << "\t" << BERANG;
 					} else  {                                 
 						// If it was a normal executable 
 						// Print it in green 
-						cout << HARA_RANG << dptr->d_name << "\t" << BERANG;
+						files_name.push_back(make_pair(dptr->d_name, HARA_RANG));
+						// cout << HARA_RANG << dptr->d_name << "\t" << BERANG;
 					}
 					close(fd); 
 				} else { 
 					// No executable flag ON 
 					// Print it in black(default)
-					cout << dptr->d_name << "\t";
+					files_name.push_back(make_pair(dptr->d_name, ""));
+					// cout << dptr->d_name << "\t";
 				}
 			} 
+		}
+		sort(files_name.begin(), files_name.end());
+		for (int i = 0; i < files_name.size(); ++i) {
+			cout << files_name[i].second << files_name[i].first << "\t";
+			if (files_name[i].second == "") {
+				cout << "";
+			} else {
+				cout << BERANG;
+			}
 		}
 		cout << endl;
 	} else {
