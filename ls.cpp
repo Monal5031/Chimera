@@ -81,12 +81,19 @@ int ls(bool pass) {
 		}
 		cout << endl;
 	} else {
-		while ((dptr = readdir(dp)) != NULL){
+	        
+	        int n = scandir(".", &dptr, NULL, alphasort);
+	        if (n < 0)
+        perror("scandir");
+    else {
+		while ((dptr = readdir(dp)) != NULL && n--){
 		  if(dptr->d_name[0] != '.')  {
-			struct stat fileStat;
-			stat(dptr->d_name,&fileStat);   
+			//struct stat fileStat;
+			//stat(dptr->d_name,&fileStat);   
 			
-			((S_ISDIR(fileStat.st_mode)) ? printf("d") : printf("-"));
+			printf("%s\n", dptr[n]->d_name);
+    
+			/*((S_ISDIR(fileStat.st_mode)) ? printf("d") : printf("-"));
 			((fileStat.st_mode & S_IRUSR) ? printf("r") : printf("-"));
 			((fileStat.st_mode & S_IWUSR) ? printf("w") : printf("-"));
 			((fileStat.st_mode & S_IXUSR) ? printf("x") : printf("-"));
@@ -113,7 +120,8 @@ int ls(bool pass) {
 			
 			//cout << " "<<dptr->d_name << endl;
 			
-			printf(" %ld %s %s %6ld %s %s\n",(long)fileStat.st_nlink,pwd->pw_name,grp->gr_name,(long)fileStat.st_size,time,dptr->d_name);
+			printf(" %ld %s %s %6ld %s %s\n",(long)fileStat.st_nlink,pwd->pw_name,grp->gr_name,(long)fileStat.st_size,time,dptr->d_name);*/
+		}
 		}
 		}
 	cout << endl;
