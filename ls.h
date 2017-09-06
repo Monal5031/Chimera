@@ -1,23 +1,3 @@
-#include <iostream>
-#include <string>
-#include <cctype>
-#include <vector>
-#include <algorithm>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <stdlib.h>
-#include <sys/types.h> 
-#include <unistd.h> 
-#include <fcntl.h> 
-#include <sys/ioctl.h>
-#include <pwd.h>
-#include <grp.h>
-#include <stdio.h>
-
-
-using namespace std;
-
-#include "split_command_and_flags.h"
 // Color codes to display dir, files and exec.
 #define BERANG "\e[m" 
 #define HARA_RANG "\e[32m" 
@@ -119,18 +99,4 @@ int ls(bool pass) {
 	cout << endl;
 	}
 	return 0;
-}
-
-int main() {
-	// Make I/O fast	
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
-
-	// Take input from stream
-	string inp;
-	getline(cin, inp);
-	vector <string> command = split(inp, ' ');
-	ls(command.size() == 1);
-	return 0;
-}
+}	
