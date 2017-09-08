@@ -9,4 +9,3 @@ vector <string> split(const string &text, char sep) {
 	tokens.erase(remove(tokens.begin(), tokens.end(), ""), tokens.end());
 	return tokens;
 }
-

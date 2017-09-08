@@ -9,6 +9,15 @@
 #include <sys/stat.h>
 #include <string.h>
 #include <stdio.h>
+#include <dirent.h>
+#include <stdlib.h>
+#include <sys/types.h> 
+#include <fcntl.h> 
+#include <sys/ioctl.h>
+#include <pwd.h>
+#include <grp.h>
+#include <utility>
+#include <map>
 
 using namespace std;
 
@@ -19,12 +28,9 @@ using namespace std;
 #include "make_dir.h"
 #include "cd.h"
 #include "removedir.h"
+#include "ls.h"
 
 int main() {
-	// Make I/O faster
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
 
 	// CMD interpreter and calling will be done here later.	
 	
@@ -45,10 +51,11 @@ int main() {
 	make_dir();
 	cd();
 	pwd();
-	//exit_command();
+	ls(true);
 	// Testing rmdir()
 	string t="rmdir dir";
 	vector<string> com = split(t, ' ');
 	remdir(com.back());
+	exit_command();
 	return 0;
 }
