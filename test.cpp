@@ -31,10 +31,6 @@ using namespace std;
 #include "ls.h"
 
 int main() {
-	// Make I/O faster
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
 
 	// CMD interpreter and calling will be done here later.	
 	
