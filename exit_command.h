@@ -1,4 +1,4 @@
-int exit_command() {
+void exit_command() {
   /* code */
   while (1) {
 		/* code */
@@ -12,8 +12,8 @@ int exit_command() {
 			std::cin >> confirm;
 			if (confirm == "Y" || confirm == "y") {
 				/* code */
-				exit;
-				return 0;
+				
+				return;
 
 			}
 			else{
