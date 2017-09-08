@@ -1,3 +1,14 @@
+bool stringCompare( const string &left, const string &right ){
+   for( string::const_iterator lit = left.begin(), rit = right.begin(); lit != left.end() && rit != right.end(); ++lit, ++rit )
+      if( tolower( *lit ) < tolower( *rit ) )
+         return true;
+      else if( tolower( *lit ) > tolower( *rit ) )
+         return false;
+   if( left.size() < right.size() )
+      return true;
+   return false;
+}
+
 // Color codes to display dir, files and exec.
 #define BERANG "\e[m" 
 #define HARA_RANG "\e[32m" 
@@ -10,8 +21,8 @@ int ls(bool pass) {
 	struct dirent *dptr = NULL; 
 	unsigned int count = 0; 
 	struct winsize w;
-	vector < pair < string, string> > files_name;
-	
+	vector < string > files_name;
+	map < string, string > map_files;
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); 
 
 	// Check if working directory is accessible by non-superuser
@@ -46,30 +57,32 @@ int ls(bool pass) {
 					// permissions on it. 
 					if(S_ISDIR(st.st_mode)) {
 						// If it was a directory, print it in Blue
-						files_name.push_back(make_pair(dptr->d_name, NILA_RANG));
+						files_name.push_back(dptr->d_name);
+						map_files.insert(make_pair(dptr->d_name, NILA_RANG));
 						// cout << NILA_RANG << dptr->d_name << "\t" << BERANG;
 					} else  {                                 
 						// If it was a normal executable 
 						// Print it in green 
-						files_name.push_back(make_pair(dptr->d_name, HARA_RANG));
+						files_name.push_back(dptr->d_name);
+						map_files.insert(make_pair(dptr->d_name, HARA_RANG));
 						// cout << HARA_RANG << dptr->d_name << "\t" << BERANG;
 					}
 					close(fd); 
 				} else { 
 					// No executable flag ON 
 					// Print it in black(default)
-					files_name.push_back(make_pair(dptr->d_name, ""));
+					files_name.push_back(dptr->d_name);
+					map_files.insert(make_pair(dptr->d_name, ""));
 					// cout << dptr->d_name << "\t";
 				}
 			} 
 		}
-		sort(files_name.begin(), files_name.end());
+		sort(files_name.begin(), files_name.end(), stringCompare);
 		for (int i = 0; i < files_name.size(); ++i) {
-			cout << files_name[i].second << files_name[i].first << "\t";
-			if (files_name[i].second == "") {
-				cout << "";
+			if (map_files[files_name[i]] == "") {
+				cout << files_name[i] << "\t";
 			} else {
-				cout << BERANG;
+				cout << map_files[files_name[i]] << files_name[i] << "\t" << BERANG;
 			}
 		}
 		cout << endl;
