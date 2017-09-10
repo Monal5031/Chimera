@@ -33,12 +33,17 @@ using namespace std;
 
 int main() {
 
-	struct passwd *pwd;
-	pwd_a = getpwuid(fileStat.st_uid);
-	string root_name = pwd_a->pw_name;
+	register struct passwd *pw;
+	register uid_t uid;
+	uid = geteuid ();
+	pw = getpwuid (uid);
+	string root_name = pw->pw_name;
 	while (1) {
+		char cwd[1024];
+		chdir("/path/to/change/directory/to");
+		getcwd(cwd, sizeof(cwd));
 		string command;
-		cout << root_name << "@ubuntu:";
+		cout << HARA_RANG <<root_name << "@ubuntu" << BERANG << ":" << NILA_RANG << cwd << BERANG << "$";
 		getline(cin, command);
 		vector < string > commands = split(command, ' ');
 		if (commands[0] == "pwd") {
