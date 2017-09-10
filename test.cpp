@@ -56,7 +56,7 @@ int main() {
 			cd((commands.size() == 1) ? "": commands[1]);
 		}
 		else if (commands[0] == "ls") {
-			ls(commands.size() == 1);
+			ls((commands.size() == 1) ? "" : commands[1]);
 		}
 		else if (commands[0] == "rmdir") {
 			remdir((commands.size() == 1) ? "": commands[1]);
@@ -65,7 +65,7 @@ int main() {
 			exit_command();
 		}
 		else {
-			cout << "Invalid command" << endl;
+			cout <<commands[0] << ": Command not found" << endl;
 		}
 	}
 	return 0;

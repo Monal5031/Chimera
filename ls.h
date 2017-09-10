@@ -15,7 +15,7 @@ bool stringCompare( const string &left, const string &right ){
 #define NILA_RANG "\e[36m"
 
 // Core logic of ls command
-int ls(bool pass) {
+int ls(string pass) {
 	char *curr_dir = NULL; 
 	DIR *dp = NULL; 
 	struct dirent *dptr = NULL; 
@@ -39,7 +39,7 @@ int ls(bool pass) {
 		return -1;
 	}
 
-	if (pass) {
+	if (pass == "") {
 		for(count = 0; NULL != (dptr = readdir(dp)); ++count)  {
 			if(dptr->d_name[0] != '.')  { 
 				// Check if the file is executable
