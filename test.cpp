@@ -18,6 +18,7 @@
 #include <grp.h>
 #include <utility>
 #include <map>
+#include <signal.h>
 
 using namespace std;
 
@@ -32,30 +33,35 @@ using namespace std;
 
 int main() {
 
-	// CMD interpreter and calling will be done here later.	
-	
-	// For now just add something to test your code.
-	// Get the string using " getline(cin, test); "
-
-	// Testing split function
-	string test = "  ls   -l  ";
-	vector < string > command = split(test, ' ');
-	for (int i = 0;  i < command.size(); ++i) {
-		cout << command[i] << endl;	
+	struct passwd *pwd;
+	pwd_a = getpwuid(fileStat.st_uid);
+	string root_name = pwd_a->pw_name;
+	while (1) {
+		string command;
+		cout << root_name << "@ubuntu:";
+		getline(cin, command);
+		vector < string > commands = split(command, ' ');
+		if (commands[0] == "pwd") {
+			pwd();
+		}
+		else if (commands[0] == "mkdir") {
+			make_dir();
+		}
+		else if (commands[0] == "cd") {
+			cd();
+		}
+		else if (commands[0] == "ls") {
+			ls();
+		}
+		else if (commands[0] == "rmdir") {
+			remdir();
+		}
+		else if(commands[0] == "exit") {
+			exit_command();
+		}
+		else {
+			cout << "Invalid command" << endl;
+		}
 	}
-
-	// Testing pwd command
-
-	pwd();
-	// Add tests here. 
-	make_dir();
-	cd();
-	pwd();
-	ls(true);
-	// Testing rmdir()
-	string t="rmdir dir";
-	vector<string> com = split(t, ' ');
-	remdir(com.back());
-	exit_command();
 	return 0;
 }
