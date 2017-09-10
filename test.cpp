@@ -45,16 +45,16 @@ int main() {
 			pwd();
 		}
 		else if (commands[0] == "mkdir") {
-			make_dir();
+			make_dir((commands.size() == 1) ? "": commands[1]);
 		}
-		else if (commands[0] == "cd") {
-			cd();
+		else if (commands[0] == "cd") {			
+			cd((commands.size() == 1) ? "": commands[1]);
 		}
 		else if (commands[0] == "ls") {
-			ls();
+			ls(commands.size() == 1);
 		}
 		else if (commands[0] == "rmdir") {
-			remdir();
+			remdir((commands.size() == 1) ? "": commands[1]);
 		}
 		else if(commands[0] == "exit") {
 			exit_command();

@@ -6,6 +6,10 @@ void print_path() {
 }
 
 int cd(string newDir) {
+	if (newDir == "") {
+		cout << "Directory name cannot be empty" << endl;
+		return 1;
+	}
         string path;
         int rc = -1 ;
 
