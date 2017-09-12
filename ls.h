@@ -16,7 +16,7 @@ bool stringCompare( const string &left, const string &right ){
 
 // Core logic of ls command
 int ls(string pass) {
-	char *curr_dir = NULL; 
+	char curr_dir[1024]; 
 	DIR *dp = NULL; 
 	struct dirent *dptr = NULL; 
 	unsigned int count = 0; 
@@ -25,8 +25,9 @@ int ls(string pass) {
 	map < string, string > map_files;
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w); 
 
-	// Check if working directory is accessible by non-superuser
-	curr_dir = getenv("PWD"); 
+	// Get the current working directory.
+	chdir("/path/to/change/directory/to");
+	getcwd(curr_dir, sizeof(curr_dir));
 	if (NULL == curr_dir)  { 
 		cout << endl << "ERROR : Working directory cannot be opened." << endl;
 		return -1;
@@ -85,7 +86,11 @@ int ls(string pass) {
 				cout << map_files[files_name[i]] << files_name[i] << "\t" << BERANG;
 			}
 		}
-		cout << endl;
+		if (!files_name.size()) {
+			cout << "Current working directory is empty" << endl;
+		} else {
+			cout << endl;
+		}
 	} else {
 		while ((dptr = readdir(dp)) != NULL){
 		  if(dptr->d_name[0] != '.')  {
