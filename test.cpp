@@ -47,7 +47,7 @@ int main() {
 		chdir("/path/to/change/directory/to");
 		getcwd(cwd, sizeof(cwd));
 		string command;
-		cout << HARA_RANG <<root_name << "@ubuntu" << BERANG << ":" << NILA_RANG << cwd << BERANG << "$";
+		cout << HARA_RANG <<root_name << "@ubuntu" << BERANG << ":" << NILA_RANG << cwd << BERANG << "$ ";
 		getline(cin, command);
 		vector < string > commands = split(command, ' ');
 		if (commands[0] == "pwd") {
