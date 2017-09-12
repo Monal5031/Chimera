@@ -23,10 +23,35 @@ Chimera has following functions:
  * exit
 
 ### Below are the code implementations of the Repo:
+navigate to the cloned repo
 * Running the test file:
 ```bash
-  navigate to the cloned repo
-  g++ -o test test.cpp
+   g++ -o test test.cpp
+```
+
+* Making a new directory:
+```bash
+  mkdir filename
+```
+* Removing a directory: 
+```bash
+rmdir filename 
+```
+* Listing out files:
+```bash
+ls
+```
+* Changing current directory:
+```bash
+cd filename
+```
+* Printing the current directory:
+```bash 
+pwd
+```
+* Exiting the terminal
+```bash
+exit
 ```
 
 
@@ -50,6 +75,5 @@ Chimera has following functions:
 
 ### Credits:
 
-
-> Created by:
->>yaha naam aaenge
+> yaha naam aaenge
+> 
