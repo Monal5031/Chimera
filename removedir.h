@@ -1,24 +1,38 @@
-int remdir(string dirname) {
-
-	if (dirname == "") {
-		cout << "Directory name cannot be empty" << endl;
-		return 1;
+int remove_directory(char *delete_dir_name) {
+	DIR *dir_pointer = opendir(delete_dir_name);
+	size_t delete_dir_name_len = strlen(delete_dir_name);
+	int return_val = -1;
+	if (dir_pointer) {
+		struct dirent *file_pointers;
+		return_val = 0;
+		while (!return_val && (file_pointers=readdir(dir_pointer))) {
+			int r2 = -1;
+			char *buf;
+			size_t len;
+			/* Skip the names "." and ".." as we don't want to recurse on them. */
+			if (!strcmp(file_pointers->d_name, ".") || !strcmp(file_pointers->d_name, "..")) {
+				continue;
+			}
+			len = path_len + strlen(file_pointers->d_name) + 2; 
+			buf = (char*)malloc(len);
+			if (buf) {
+				struct stat statbuf;
+				snprintf(buf, len, "%s/%s", delete_dir_name, file_pointers->d_name);
+				if (!stat(buf, &statbuf)) {
+					if (S_ISDIR(statbuf.st_mode)) {
+						r2 = remove_directory(buf);
+					} else {
+						r2 = unlink(buf);
+					}
+				}
+				free(buf);
+			}
+			return_val = r2;
+		}
+		closedir(dir_pointer);
 	}
-	char c[1000];
-	strcpy(c,dirname.c_str());
-	/*Copies the C string pointed by source into the array pointed by destination,
-	including the terminating null character (and stopping at that point).
-	To avoid overflows, the size of the array pointed by destination shall be
-	long enough to contain the same C string as source (including the terminating null character),
-	 and should not overlap in memory with source.
-	*/
-	// rmdir removes the given directory and returns 0 for successful removal
-	// and -1 for Error
-	
-	if(rmdir(c) == 0) {
-		cout << "The directory has been deleted." << endl;
-	} else {
-		cout << "No such directory exists, or if it does, it is non-empty." << endl;
+	if (!return_val) {
+		return_val = rmdir(delete_dir_name);
 	}
-    return 0;
+	return return_val;
 }

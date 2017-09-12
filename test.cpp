@@ -63,7 +63,7 @@ int main() {
 			ls((commands.size() == 1) ? "" : commands[1]);
 		}
 		else if (commands[0] == "rmdir") {
-			remdir((commands.size() == 1) ? "": commands[1]);
+			remove_directory(commands[1].c_str());
 		}
 		else if(commands[0] == "exit") {
 			exit_command();
