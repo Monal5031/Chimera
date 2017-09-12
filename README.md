@@ -2,7 +2,7 @@
 
 ## Chimera
 
->Made with c++ and :heart:
+>Made in C++ with :heart:
 
 ```c
 Following is the OS mini project 
