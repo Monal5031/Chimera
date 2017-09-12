@@ -91,7 +91,7 @@ int ls(string pass) {
 		} else {
 			cout << endl;
 		}
-	} else {
+	} else if (pass == "-l") {
 		while ((dptr = readdir(dp)) != NULL){
 		  if(dptr->d_name[0] != '.')  {
 			struct stat fileStat;
