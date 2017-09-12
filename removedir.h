@@ -1,6 +1,6 @@
-int remove_directory(char *delete_dir_name) {
+int remove_directory(const char *delete_dir_name) {
 	DIR *dir_pointer = opendir(delete_dir_name);
-	size_t delete_dir_name_len = strlen(delete_dir_name);
+	size_t path_len = strlen(delete_dir_name);
 	int return_val = -1;
 	if (dir_pointer) {
 		struct dirent *file_pointers;
