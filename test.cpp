@@ -32,7 +32,11 @@ using namespace std;
 #include "ls.h"
 
 int main() {
-
+	
+	char pp[1024];
+	chdir("/path/to/change/directory/to");
+	getcwd(pp, sizeof(pp));
+	previous_path_cd = pp ;	
 	register struct passwd *pw;
 	register uid_t uid;
 	uid = geteuid ();

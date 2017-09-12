@@ -1,73 +1,77 @@
-void print_path() {
-   char *wd(getcwd(NULL,0));
-   string cwd(wd);
-   free(wd);
-   cout << cwd << endl;
+/*
+cd function change the directory of the programm
+if its execoted successfully retrns  0 ; 
+if the given path or directory does not exits gines error message
+and returns  1 ;
+*/
 
-   /*
+string previous_path_cd ; /*global variable to store the previous path
+			  used in " cd - " call*/
 
-   #define _POSIX_SOURCE
-   #include <unistd.h>
+string get_path() {
 
-   char *getcwd(char *buffer, size_t size);
+	char *wd(getcwd(NULL,0));
+  	string cwd(wd);
+ 	free(wd);
+  	return cwd ;
 
-
-
-   Determines the path name of the working directory and stores it in buffer.
-   size
-   The number of characters in the buffer area.
-   buffer
-   The name of the buffer that will be used to hold the
-   path name of the working directory.
-   buffer must be big enough to hold the working directory name,
-   plus a terminating NULL to mark the end of the name.
-   */
+	/*
+	get_path() ;
+	somewhat similar to " pwd() " ;
+	return the path of current directory in which the program is going on ;
+	used in " int cd() " 
+	*/
 
 
 }
-/*
-  cd function creates the directory and also checks if the input name is in
-  accordance to the standards
-*/
+	
+
+string determine_home(){
+
+	struct passwd *pw;
+        char *user = NULL;
+	pw = getpwuid(geteuid());  
+        user = pw->pw_name;
+	string home  = "/home/" ;
+        home.append(user);
+	return home ;
+
+	/*
+	used for determining the path "/home/username" 
+	this path used in "cd ~" call
+	*/
+}
 
 int cd(string newDir) {
-	if (newDir == "") {
-		cout << "Directory name cannot be empty" << endl;
-		return 1;
-	}
-        string path;
+	
+	string path = previous_path_cd;
         int rc = -1 ;
-
-        char * wd=(getcwd(NULL, 0));
+	/*chdir changes directory to the mentioned path*/
+	/*if chdir executes successfully then returns 0 otherwise -1 */
         if(newDir == "~") {
-		rc=chdir("/home/ajayguru");
-    /*Makes pathname your new working directory
-      If successful, chdir() changes the working directory and returns 0.
-    */
-		path = wd;
-		free(wd);
+		/*
+		cd ~ call is used to go to the user's home directory
+		*/
+		previous_path_cd = get_path();
+		rc=chdir(determine_home().c_str());
 	}
 	else if (newDir == "-") {
+                /*cd - call used to toggle between current and previous directory*/
+		string temp = get_path();
                 rc = chdir(path.c_str());
-
-                /*
-                The member function returns a pointer to a non-modifiable C string constructed by adding a terminating null
-                element (value_type()) to the controlled sequence.
-                Calling any non-const member function for *this can invalidate the pointer.
-                chdir changes directory to the mentioned path
-                */
-                
-                print_path() ;
-                path = wd;
-                free(wd);
+		previous_path_cd = temp ;
+                cout << get_path() << endl ;
 	}
-	else {
+	else {	
+		/*get any path or directory name and change current directory to that*/
+		previous_path_cd = get_path();
 		rc = chdir(newDir.c_str());
-		path = wd;
-		free(wd);
 		if (rc < 0)  {
+			/*rc = -1 ,means chdir has not executed successfully so 
+			now we will print error message and int cd() returns int value 1 */
 			cout << "bash: cd: "<< newDir << ": No such file or directory" << endl;
-			exit(1);
+			return 1 ;
 		}
 	}
+	return 0 ;//current directory changes successfully , returns 0
 }
