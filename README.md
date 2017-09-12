@@ -24,9 +24,14 @@ Chimera has following functions:
 
 ### Below are the code implementations of the Repo:
 navigate to the cloned repo
-* Running the test file:
+* Compiling the test file:
 ```bash
    g++ -o test test.cpp
+```
+
+* Running the test file
+```bash
+   ./test
 ```
 
 * Making a new directory:
