@@ -18,7 +18,7 @@ int remdir(string dirname) {
 	if(rmdir(c) == 0) {
 		cout << "The directory has been deleted." << endl;
 	} else {
-		cout << q"No such directory exists, or if it does, it is non-empty." << endl;
+		cout << "No such directory exists, or if it does, it is non-empty." << endl;
 	}
     return 0;
 }
