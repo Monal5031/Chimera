@@ -81,13 +81,23 @@ exit
 ### Credits:
 
 > [Monal Shadi](https://github.com/Monal5031)
+
 > [Ajay Guru](https://github.com/guru-DeV-002)
-> [Ishita Das](https://github.com/ishita27)
+
 > [Kumar Himanshu](https://github.com/kumarhimanshu5128409)
+
 > [Avkaran SIngh](https://github.com/avsingh999)
+
 > [Madhuri Mahawar](https://github.com/madhuri-mahawar)
+
 > [Monika Phadnis](https://github.com/guru-DeV-002)
+
 > [Smit Rajput](https://github.com/desc1ple)
-> [Jeet Meena](https://github.com/jeetmeena)
-> [Natharam Jaipal](https://github.com/Natharam)
+
+> [Ishita Das](https://github.com/ishita27)
+
 > [Puneet Bindal](https://github.com/rockstar777)
+
+> [Jeet Meena](https://github.com/jeetmeena)
+
+> [Natharam Jaipal](https://github.com/Natharam)
