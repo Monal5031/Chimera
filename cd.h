@@ -1,7 +1,7 @@
 /*
 cd function change the directory of the programm
-if its execoted successfully retrns  0 ; 
-if the given path or directory does not exits gines error message
+if it is executed successfully returns  0 ; 
+if the given path or directory does not exits gives error message
 and returns  1 ;
 */
 
