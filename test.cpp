@@ -57,7 +57,7 @@ int main() {
 			make_dir((commands.size() == 1) ? "": commands[1]);
 		}
 		else if (commands[0] == "cd") {			
-			cd((commands.size() == 1) ? "": commands[1]);
+			cd((commands.size() == 1) ? "~": commands[1]);
 		}
 		else if (commands[0] == "ls") {
 			ls((commands.size() == 1) ? "" : commands[1]);

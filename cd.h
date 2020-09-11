@@ -29,12 +29,8 @@ string get_path() {
 string determine_home(){
 
 	struct passwd *pw;
-        char *user = NULL;
-	pw = getpwuid(geteuid());  
-        user = pw->pw_name;
-	string home  = "/home/" ;
-        home.append(user);
-	return home ;
+	pw = getpwuid(geteuid());
+    return pw->pw_dir;
 
 	/*
 	used for determining the path "/home/username" 
